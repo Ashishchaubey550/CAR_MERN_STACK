@@ -25,13 +25,14 @@ app.use(cors({
   },
   methods: "GET, POST, PUT, DELETE, OPTIONS",
   allowedHeaders: "Content-Type, Authorization",
-  credentials: true // ✅ Allow cookies if needed
+  credentials: true
 }));
 
-app.use(express.json());
-
-// ✅ Handle preflight requests (Important for POST requests)
+// Handle preflight requests
 app.options("*", cors());
+
+
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from "uploads"
 
 // MongoDB Connection
