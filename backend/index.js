@@ -23,9 +23,15 @@ app.use(cors({
       callback(new Error("Not allowed by CORS"));
     }
   },
-  methods: "GET, POST, PUT, DELETE",
-  allowedHeaders: "Content-Type, Authorization"
+  methods: "GET, POST, PUT, DELETE, OPTIONS",
+  allowedHeaders: "Content-Type, Authorization",
+  credentials: true // ✅ Allow cookies if needed
 }));
+
+app.use(express.json());
+
+// ✅ Handle preflight requests (Important for POST requests)
+app.options("*", cors());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from "uploads"
 
 // MongoDB Connection
