@@ -9,10 +9,23 @@ const User = require("./DB/User"); // User model
 const Product = require("./DB/Product"); // Product model
 
 const app = express();
-
+const allowedOrigins = [
+  "https://car-mern-stack-admin-panel.vercel.app",
+  "https://car-mern-publicsite-j9go3zjrx-ashish-chaubeys-projects.vercel.app"
+];
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET, POST, PUT, DELETE",
+  allowedHeaders: "Content-Type, Authorization"
+}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from "uploads"
 
 // MongoDB Connection
