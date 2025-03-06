@@ -15,11 +15,11 @@ app.use(express.json());
 app.use(cors({
   origin: [
     'https://car-mern-stack.vercel.app',
-    'https://car-mern-stack-frontend-admin.vercel.app/singup'
+    'https://car-mern-stack-frontend-admin.vercel.app'
   ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow common HTTP methods
-  credentials: true, // Allow cookies and credentials
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allow necessary headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from "uploads"
 
