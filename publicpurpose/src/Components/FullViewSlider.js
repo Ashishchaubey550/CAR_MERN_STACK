@@ -59,7 +59,7 @@ function FullViewSlider({ product, closeModal, imageHeight = 400 }) {
               <div key={idx} className="h-full flex items-center">
                 <img
                   className="object-contain w-full rounded-lg"
-                  src={`http://localhost:8000${image}`}
+                  src={`https://car-mern-stack.onrender.com${image}`}
                   alt={`Product Image ${idx + 1}`}
                   style={{
                     maxHeight: `${dynamicImageHeight}px`,

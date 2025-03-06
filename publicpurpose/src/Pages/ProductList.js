@@ -62,7 +62,7 @@ function ProductList() {
 
   const getProducts = async () => {
     try {
-      let result = await fetch("http://localhost:8000/product");
+      let result = await fetch("https://car-mern-stack.onrender.com/product");
       result = await result.json();
       if (result && result.length > 0) {
         const normalizedProducts = result.map((p) => ({
@@ -328,7 +328,7 @@ function ProductList() {
       const key = event.target.value;
       if (key) {
         try {
-          let result = await fetch(`http://localhost:8000/search/${key}`);
+          let result = await fetch(`https://car-mern-stack.onrender.com/search/${key}`);
           result = await result.json();
           if (result) {
             const normalizedResult = result.map((p) => ({
@@ -855,7 +855,7 @@ function ProductList() {
                       item.images.map((image, idx) => (
                         <div key={idx} className="slider-image-container">
                           <img
-                            src={`http://localhost:8000${image}`}
+                            src={`https://car-mern-stack.onrender.com${image}`}
                             alt={`Product ${idx + 1}`}
                             className="product-image w-full h-48 object-cover rounded-lg"
                           />
