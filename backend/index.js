@@ -17,7 +17,9 @@ app.use(cors({
     'https://car-mern-stack.vercel.app',
     'https://car-mern-stack-frontend-admin.vercel.app'
   ],
-  credentials: true // Allow cookies and credentials (if needed)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow common HTTP methods
+  credentials: true, // Allow cookies and credentials
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allow necessary headers
 }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from "uploads"
 
