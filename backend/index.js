@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     'https://car-mern-stack.vercel.app',
-    'https://car-mern-stack-frontend-admin.vercel.app'
+    'https://car-mern-stack-frontend-admin.vercel.app/'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
