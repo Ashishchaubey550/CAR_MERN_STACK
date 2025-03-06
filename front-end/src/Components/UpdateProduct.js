@@ -8,6 +8,7 @@ function UpdateProduct() {
     const [distanceCovered, setDistanceCovered] = useState('');
     const [modelYear, setModelYear] = useState('');
     const [price, setPrice] = useState('');
+    const [bodyType, setbodyType] = useState('');
     const [image, setImage] = useState(null); // State for image
     const [error, setError] = useState('');
     const params = useParams();
@@ -21,7 +22,7 @@ function UpdateProduct() {
 
     const getProductDetails = async() =>{
         console.log(params)
-        let result = await fetch(`https://car-mern-stack.onrender.com/product/${params.id}`)
+        let result = await fetch(`https://car-dealer-backend-7m2r.onrender.com/product/${params.id}`)
         result = await result.json();
         setCompany(result.company)
         setModel(result.model)
@@ -29,13 +30,15 @@ function UpdateProduct() {
         setDistanceCovered(result.distanceCovered)
         setModelYear(result.modelYear)
         setPrice(result.price)
+        setbodyType(result.bodyType)
     }
 
     const UpdateProd = async () => {
         console.warn(company,model,color,distanceCovered , modelYear , price)
-        let result = await fetch(`https://car-mern-stack.onrender.com/product/${params.id}`,{
+        let result = await fetch(`https://car-dealer-backend-7m2r.onrender.com/product/${params.id}`,{
             method:'Put',
-            body:JSON.stringify({company,model,color,distanceCovered , modelYear , price}),
+            body:JSON.stringify({company,model,color,distanceCovered , modelYear , price ,bodyType
+            }),
             headers:{
                 'Content-Type':"application/json"
             }
@@ -97,6 +100,18 @@ function UpdateProduct() {
                 value={modelYear}
             />
             {error && !modelYear && <span className=' text-red-600 block mt-[-20px] ml-[-170px]'>Enter modelYear</span>}
+
+            <input
+                className="block m-[25px] p-2 w-[300px] border-solid border-blue-400 border-[1px]"
+                type="text"
+                placeholder="Enter Car body"
+                onChange={(e) => setbodyType(e.target.value)}
+                value={bodyType}
+            />
+            {error && !bodyType && <span className="text-red-600 block mt-[-20px] ml-[-170px]">Enter valid bodyType</span>}
+
+
+              
 
             <input
                 className="block m-[25px] p-2 w-[300px] border-solid border-blue-400 border-[1px]"

@@ -23,7 +23,7 @@ const Navbar = () => {
                        <img className="h-[100px] w-[100px]" src={logo}/>
                        </div>
                        <div className="flex"> 
-                       <li className="  text-white p-4 hover:text-white hover:border-b-4 hover:border-b-red-400">
+                       <li className=" text-green-400  text-white p-4 hover:text-white hover:border-b-4 hover:border-b-red-400">
                             <Link to="/add">Add Product</Link>
                         </li>
                         {/* <li className=" text-white  p-5">

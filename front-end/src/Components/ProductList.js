@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../CSS/ProductList.css";
+import Slider from "react-slick"; // Import react-slick
+
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -11,7 +13,7 @@ function ProductList() {
 
   const getProducts = async () => {
     try {
-      let result = await fetch("https://car-mern-stack.onrender.com/product");
+      let result = await fetch("https://car-dealer-backend-7m2r.onrender.com/product");
       result = await result.json();
       if (result && result.length > 0) {
         setProducts(result);
@@ -25,7 +27,7 @@ function ProductList() {
 
   const deleteCar = async (id) => {
     try {
-      let result = await fetch(`https://car-mern-stack.onrender.com/product/${id}`, {
+      let result = await fetch(`https://car-dealer-backend-7m2r.onrender.com/product/${id}`, {
         method: "DELETE",
       });
       result = await result.json();
@@ -42,7 +44,7 @@ function ProductList() {
 
     if (key) {
       try {
-        let result = await fetch(`https://car-mern-stack.onrender.com/search/${key}`);
+        let result = await fetch(`https://car-dealer-backend-7m2r.onrender.com/search/${key}`);
         result = await result.json();
 
         if (result) {
@@ -56,6 +58,20 @@ function ProductList() {
     }
   };
 
+    // Slider settings
+    const sliderSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
+
+
+
+
+
+
   return (
     <div className="product-list-container">
       <input
@@ -68,12 +84,19 @@ function ProductList() {
         <div className="product-grid">
           {products.map((item, index) => (
             <div key={item._id} className="product-card">
-              <img
-                src={`https://car-mern-stack.onrender.com${item.image}`}
-                alt={item.model}
-                className="product-image"
-              />
-              <h3 className="product-model">Model: {item.model}</h3>
+<Slider {...sliderSettings} className="product-slider">
+                {item.images &&
+                  item.images.map((image, idx) => (
+                    <div key={idx} className="">
+                      <img
+                        src={`https://car-dealer-backend-7m2r.onrender.com${image}`}
+                        alt={`Product ${idx + 1}`}
+                        className="product-image"
+                      />
+                    </div>
+                  ))}
+              </Slider>
+              <h3 className=" mt-10 product-model">Model: {item.model}</h3>
               <p className="product-company">Company: {item.company}</p>
               <p className="product-color">Color: {item.color}</p>
               <p className="product-distance">
@@ -81,7 +104,8 @@ function ProductList() {
               </p>
               <p className="product-modelYear">Model Year: {item.modelYear}</p>
               <p className="product-price">Price: ₹{item.price} Lakhs</p>
-              <p className="product-bodyType">Body Type: {item.bodyType}</p>
+              <p className="product-bodyType">BodyType: {item.bodyType}</p>
+
               <div className="product-actions">
                 <button
                   className="delete-button"
