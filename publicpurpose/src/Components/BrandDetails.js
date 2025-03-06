@@ -60,7 +60,7 @@ const BrandDetails = () => {
                 {item.images?.map((image, idx) => (
                   <div key={idx} className="slider-image-container">
                     <img
-                      src={`http://localhost:8000${image}`}
+                      src={`http://localhost:8000/${image}`}
                       alt={`Product ${idx + 1}`}
                       className="product-image"
                     />
