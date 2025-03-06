@@ -26,7 +26,7 @@ const Signup = () => {
 
         console.log(name, password, email);
 
-        let result = await fetch("https://cars-fullstack.onrender.com/register", {
+        let result = await fetch("https://car-mern-stack.onrender.com/register", {
             method: 'POST',
             body: JSON.stringify({ name, password, email }),
             headers: {
